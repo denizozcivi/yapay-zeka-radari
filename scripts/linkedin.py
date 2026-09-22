@@ -68,6 +68,9 @@ def yayinla(metin: str, jpeg: bytes, alt_metin: str, kaynak_url: str, token: str
     oturum = oturum or requests.Session()
     gorsel = gorsel_yukle(oturum, token, yazar_urn, jpeg)
     post = post_at(oturum, token, yazar_urn, little_text(metin), gorsel, alt_metin)
+    # Yorum API'si "Community Management API" ürünü ister; "Share on LinkedIn" ile 403 döner.
+    if os.environ.get("LINKEDIN_ILK_YORUM") != "1":
+        return {"post": post, "yorum_hatasi": None}
     try:
         yorum_yaz(oturum, token, yazar_urn, post, f"Kaynak: {kaynak_url}")
         yorum_hatasi = None

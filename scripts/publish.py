@@ -11,6 +11,7 @@ import linkedin
 UYARI_GUN = 7
 IG_SINIR = 2200
 GIZLI = ("LINKEDIN_TOKEN", "IG_TOKEN")
+VARSAYILAN_GORSEL_TABAN = "https://raw.githubusercontent.com/denizozcivi/yapay-zeka-radari/main"
 
 
 def token_uyarilari(bugun: dt.date, ortam) -> list[str]:
@@ -74,6 +75,6 @@ def yayinla(klasor: Path, ortam, gorsel_taban_url: str, li=linkedin.yayinla, ig=
 
 
 if __name__ == "__main__":
-    sonuc = yayinla(Path(sys.argv[1]), os.environ, os.environ["RADAR_IMAGE_BASE_URL"])
+    sonuc = yayinla(Path(sys.argv[1]), os.environ, os.environ.get("RADAR_IMAGE_BASE_URL", VARSAYILAN_GORSEL_TABAN))
     print(json.dumps(sonuc, ensure_ascii=False, indent=2))
     sys.exit(0 if sonuc["durum"] in ("yayinlandi", "atlandi") else 1)

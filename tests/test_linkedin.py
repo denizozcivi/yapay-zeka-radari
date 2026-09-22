@@ -14,7 +14,8 @@ def test_little_text_hashtagleri_donusturur():
     )
 
 
-def test_yayinla_akisi():
+def test_yayinla_akisi(monkeypatch):
+    monkeypatch.setenv("LINKEDIN_ILK_YORUM", "1")
     oturum = SahteOturum([
         Yanit(veri={"value": {"uploadUrl": "https://yukle", "image": "urn:li:image:1"}}),
         Yanit(201),
@@ -34,7 +35,8 @@ def test_yayinla_akisi():
     assert oturum.cagrilar[3][2]["json"]["message"]["text"] == "Kaynak: https://kaynak"
 
 
-def test_yorum_hatasi_postu_bozmaz():
+def test_yorum_hatasi_postu_bozmaz(monkeypatch):
+    monkeypatch.setenv("LINKEDIN_ILK_YORUM", "1")
     oturum = SahteOturum([
         Yanit(veri={"value": {"uploadUrl": "https://yukle", "image": "urn:li:image:1"}}),
         Yanit(201),
@@ -44,6 +46,18 @@ def test_yorum_hatasi_postu_bozmaz():
     sonuc = linkedin.yayinla("x", b"j", "a", "https://k", "tok", URN, oturum=oturum)
     assert sonuc["post"] == "urn:li:share:9"
     assert "500" in sonuc["yorum_hatasi"]
+
+
+def test_ilk_yorum_varsayilan_kapali(monkeypatch):
+    monkeypatch.delenv("LINKEDIN_ILK_YORUM", raising=False)
+    oturum = SahteOturum([
+        Yanit(veri={"value": {"uploadUrl": "https://yukle", "image": "urn:li:image:1"}}),
+        Yanit(201),
+        Yanit(201, basliklar={"x-restli-id": "urn:li:share:9"}),
+    ])
+    sonuc = linkedin.yayinla("x", b"j", "a", "https://k", "tok", URN, oturum=oturum)
+    assert sonuc == {"post": "urn:li:share:9", "yorum_hatasi": None}
+    assert len(oturum.cagrilar) == 3
 
 
 def test_kim():

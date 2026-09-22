@@ -88,3 +88,7 @@ def test_token_uyarilari():
     uyarilar = publish.token_uyarilari(BUGUN, ortam)
     assert "LinkedIn anahtarının süresi 5 gün içinde doluyor (2026-09-27). Yenile." in uyarilar
     assert "Instagram: IG_TOKEN_EXPIRES tanımlı değil, anahtar süresi izlenemiyor" in uyarilar
+
+
+def test_varsayilan_gorsel_adresi():
+    assert publish.VARSAYILAN_GORSEL_TABAN == "https://raw.githubusercontent.com/denizozcivi/yapay-zeka-radari/main"
