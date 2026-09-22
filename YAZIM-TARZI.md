@@ -12,7 +12,7 @@ Günlük seri. Her gün **1 haber**, özet listesi değil. Farkımız: haberi bi
 1. **Başlık satırı:** `🛰️ Yapay Zeka Radarı | <gün> <ay>`
 2. **Kanca (2 satır):** Haberin en çarpıcı gerçeği. "…daha fazla"dan önce görünen kısım bu.
 3. **📌 Ne oldu?** 3-4 madde, sadece doğrulanmış bilgi.
-4. **🔍 Pentester / IT yöneticisi gözüyle:** Senin yorumun. Haberde herkesin kaçırdığı açı.
+4. **🔍 Bulgu:** Senin yorumun, pentest raporundaki bulgu gibi: haberde herkesin kaçırdığı açı, IT yöneticisi / pentester gözüyle. Başlık her zaman tam olarak "🔍 Bulgu".
 5. **✅ Bugün yapılacak tek şey:** Okuyanın bugün uygulayabileceği 1 somut adım.
 6. **Soru:** Yorum getiren, taraf seçtiren tek soru + 👇
 7. **🇬🇧 özet:** 2-3 cümle.

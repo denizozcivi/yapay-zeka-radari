@@ -9,7 +9,7 @@ O kodu yazan kişi, sizin makinenizde komut çalıştırıyordu.
 • Overpatch ise apply_patch aracını kullanıyor: yamada adı geçen yollardan yazma yetkisi türetildiği için çalışma alanının dışına yazılabiliyordu.
 • Accomplish AI 12 Ağustos'ta bildirdi, OpenAI sekiz gün içinde kapattı. Düzeltmeler Codex CLI 0.149.0 ve Codex Desktop 26.818.21641 sürümlerinde.
 
-🔍 Pentester / IT yöneticisi gözüyle
+🔍 Bulgu
 Asıl mesele "OpenAI hata yaptı" değil. Sandbox, kontrol ettiği ajanla aynı süreçte yaşıyorsa o bir güvenlik sınırı değil, bir temennidir. Pentest'te yıllardır aynı cümleyi kuruyoruz: aynı bellekte duran sır, sır değildir. Yeni olan, bu sınırın geliştiricinin dizüstünde ve kurum ağına bağlı halde durması.
 
 ✅ Bugün yapılacak tek şey
@@ -19,7 +19,7 @@ Sizde ajan araçları geliştiricinin ana makinesinde mi çalışıyor, yoksa "a
 
 🇬🇧 Researchers escaped OpenAI Codex's sandbox twice: Heapjack and Overpatch. Opening an untrusted repository was enough for unsandboxed command execution on the host. Fixed in Codex CLI 0.149.0 and Desktop 26.818.21641.
 
-Kaynak: GitHub · openai/codex 0.149.0 sürüm notları
+Kaynak: BleepingComputer
 
 #YapayZekaRadarı #SiberGüvenlik #YapayZeka #DevSecOps #AIGüvenliği #Pentest #BilgiGüvenliği #Codex #OpenAI #ITYönetimi
 

@@ -1,8 +1,8 @@
 {
   "tarih": "2026-09-22",
   "konu": "OpenAI Codex sandbox'ından iki kaçış: Heapjack ve Overpatch",
-  "kaynak_adi": "GitHub · openai/codex 0.149.0 sürüm notları",
-  "kaynak_url": "https://github.com/openai/codex/releases/tag/rust-v0.149.0",
+  "kaynak_adi": "BleepingComputer",
+  "kaynak_url": "https://www.bleepingcomputer.com/news/security/researchers-escape-openai-codex-sandbox-to-run-commands-on-host/",
   "alt_metin": "Lacivert radar kartı: yeşil kesikli SANDBOX kutusundan çıkan iki kırmızı ok, HEAPJACK ve OVERPATCH etiketleriyle kutunun dışındaki hedeflere uzanıyor.",
   "durum": "atlandi",
   "gmail_thread_id": "1a0c9226114daf38",
