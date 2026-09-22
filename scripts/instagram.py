@@ -1,12 +1,27 @@
 """Instagram API (Instagram Login): görsel post yayınla, token yenile."""
+import contextlib
 import datetime as dt
 import os
 import sys
 import time
 
 import requests
+from urllib.parse import quote
 
 API = "https://graph.instagram.com/" + os.environ.get("IG_API_VERSION", "v26.0")
+
+
+@contextlib.contextmanager
+def _token_gizli(token: str):
+    """Instagram token'ı URL'de taşır; requests hataları URL'yi mesaja yazar. Token'ı maskele, zinciri kes."""
+    try:
+        yield
+    except requests.RequestException as e:
+        mesaj = str(e)
+        for bicim in {token, quote(token, safe="")}:
+            if bicim:
+                mesaj = mesaj.replace(bicim, "***")
+        raise RuntimeError(mesaj) from None
 
 
 def konteyner_olustur(oturum, token: str, kullanici_id: str, gorsel_url: str, metin: str) -> str:
@@ -34,31 +49,34 @@ def hazir_bekle(oturum, token: str, konteyner_id: str, uyu=time.sleep, deneme: i
 
 def yayinla(metin: str, gorsel_url: str, token: str, kullanici_id: str, oturum=None, uyu=time.sleep) -> str:
     oturum = oturum or requests.Session()
-    konteyner = konteyner_olustur(oturum, token, kullanici_id, gorsel_url, metin)
-    hazir_bekle(oturum, token, konteyner, uyu=uyu)
-    r = oturum.post(
-        f"{API}/{kullanici_id}/media_publish",
-        data={"creation_id": konteyner, "access_token": token},
-        timeout=60,
-    )
-    r.raise_for_status()
-    return r.json()["id"]
+    with _token_gizli(token):
+        konteyner = konteyner_olustur(oturum, token, kullanici_id, gorsel_url, metin)
+        hazir_bekle(oturum, token, konteyner, uyu=uyu)
+        r = oturum.post(
+            f"{API}/{kullanici_id}/media_publish",
+            data={"creation_id": konteyner, "access_token": token},
+            timeout=60,
+        )
+        r.raise_for_status()
+        return r.json()["id"]
 
 
 def token_yenile(token: str, oturum=None) -> dict:
-    r = (oturum or requests).get(
-        "https://graph.instagram.com/refresh_access_token",
-        params={"grant_type": "ig_refresh_token", "access_token": token},
-        timeout=30,
-    )
-    r.raise_for_status()
-    return r.json()
+    with _token_gizli(token):
+        r = (oturum or requests).get(
+            "https://graph.instagram.com/refresh_access_token",
+            params={"grant_type": "ig_refresh_token", "access_token": token},
+            timeout=30,
+        )
+        r.raise_for_status()
+        return r.json()
 
 
 def kim(token: str, oturum=None) -> dict:
-    r = (oturum or requests).get(f"{API}/me", params={"fields": "user_id,username", "access_token": token}, timeout=30)
-    r.raise_for_status()
-    return r.json()
+    with _token_gizli(token):
+        r = (oturum or requests).get(f"{API}/me", params={"fields": "user_id,username", "access_token": token}, timeout=30)
+        r.raise_for_status()
+        return r.json()
 
 
 if __name__ == "__main__":
