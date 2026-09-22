@@ -6,7 +6,7 @@ import time
 
 import requests
 
-API = "https://graph.instagram.com/" + os.environ.get("IG_API_VERSION", "v23.0")
+API = "https://graph.instagram.com/" + os.environ.get("IG_API_VERSION", "v26.0")
 
 
 def konteyner_olustur(oturum, token: str, kullanici_id: str, gorsel_url: str, metin: str) -> str:
