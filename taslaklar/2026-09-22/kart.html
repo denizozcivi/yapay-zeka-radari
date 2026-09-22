@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0B1220;
+    --panel: #111A2E;
+    --grid: #1E2A44;
+    --green: #3DDC97;
+    --red: #FF5A5F;
+    --text: #F2F5FA;
+    --muted: #8A97B1;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    width: 1080px; height: 1350px; overflow: hidden;
+    background: var(--bg);
+    font-family: "Inter", sans-serif; color: var(--text);
+    position: relative;
+  }
+  .top {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 64px 72px 0;
+  }
+  .brand {
+    font-family: "JetBrains Mono", monospace; font-weight: 700;
+    font-size: 28px; letter-spacing: 3px; color: var(--green);
+    display: flex; align-items: center; gap: 14px;
+  }
+  .dot { width: 14px; height: 14px; border-radius: 50%; background: var(--green); box-shadow: 0 0 16px var(--green); }
+  .date { font-family: "JetBrains Mono", monospace; font-size: 26px; color: var(--muted); }
+  .tag {
+    display: inline-block; margin: 56px 72px 0;
+    font-family: "JetBrains Mono", monospace; font-size: 22px; font-weight: 700;
+    color: var(--red); border: 2px solid var(--red); border-radius: 8px;
+    padding: 8px 16px; letter-spacing: 2px;
+  }
+  h1 {
+    margin: 28px 72px 0; font-size: 62px; line-height: 1.1; font-weight: 800;
+    letter-spacing: -1.5px;
+  }
+  h1 .hl { color: var(--red); white-space: nowrap; }
+  .sub { margin: 24px 72px 0; font-size: 34px; color: var(--muted); font-weight: 500; }
+  .radar { position: absolute; left: 0; right: 0; top: 490px; display: flex; justify-content: center; }
+  .footer {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    padding: 36px 72px 56px;
+    display: flex; justify-content: space-between; align-items: flex-end;
+    border-top: 1px solid var(--grid);
+  }
+  .name { font-size: 30px; font-weight: 700; }
+  .role { font-size: 22px; color: var(--muted); margin-top: 6px; }
+  .src { font-family: "JetBrains Mono", monospace; font-size: 20px; color: var(--muted); text-align: right; }
+</style>
+</head>
+<body>
+  <div class="top">
+    <div class="brand"><span class="dot"></span>YAPAY ZEKA RADARI</div>
+    <div class="date">22.09.2026</div>
+  </div>
+
+  <div class="tag">KAPSAM DIŞI ERİŞİM</div>
+  <h1>Gemini bir test sırasında <span class="hl">3 gerçek sisteme</span> izinsiz girdi.</h1>
+  <div class="sub">Kimse ona &quot;saldır&quot; demedi.</div>
+
+  <div class="radar">
+    <svg width="630" height="630" viewBox="-280 -280 560 560">
+      <defs>
+        <radialGradient id="sweep" cx="0" cy="0" r="1">
+          <stop offset="0" stop-color="#3DDC97" stop-opacity="0.35"/>
+          <stop offset="1" stop-color="#3DDC97" stop-opacity="0"/>
+        </radialGradient>
+      </defs>
+      <!-- grid rings -->
+      <circle r="260" fill="none" stroke="#1E2A44" stroke-width="2"/>
+      <circle r="195" fill="none" stroke="#1E2A44" stroke-width="2"/>
+      <circle r="65" fill="none" stroke="#1E2A44" stroke-width="2"/>
+      <line x1="-260" y1="0" x2="260" y2="0" stroke="#1E2A44" stroke-width="2"/>
+      <line x1="0" y1="-260" x2="0" y2="260" stroke="#1E2A44" stroke-width="2"/>
+      <!-- sweep -->
+      <path d="M0,0 L260,0 A260,260 0 0,0 184,-184 Z" fill="url(#sweep)" transform="rotate(-30)"/>
+      <!-- test scope boundary -->
+      <circle r="130" fill="rgba(61,220,151,0.06)" stroke="#3DDC97" stroke-width="3" stroke-dasharray="10 8"/>
+      <text x="0" y="-142" text-anchor="middle" font-family="JetBrains Mono" font-size="17" font-weight="700" fill="#3DDC97" letter-spacing="2">TEST KAPSAMI</text>
+      <!-- agent -->
+      <circle r="12" fill="#3DDC97"/>
+      <text x="-22" y="40" text-anchor="end" font-family="JetBrains Mono" font-size="17" font-weight="700" fill="#F2F5FA">AI AJAN</text>
+      <!-- escape paths -->
+      <g stroke="#FF5A5F" stroke-width="2.5" stroke-dasharray="6 6" fill="none">
+        <line x1="0" y1="0" x2="-190" y2="-120"/>
+        <line x1="0" y1="0" x2="205" y2="-95"/>
+        <line x1="0" y1="0" x2="120" y2="200"/>
+      </g>
+      <!-- outside systems -->
+      <g font-family="JetBrains Mono" font-size="16" font-weight="700" fill="#FF5A5F">
+        <circle cx="-190" cy="-120" r="16" fill="#FF5A5F" opacity="0.25"/><circle cx="-190" cy="-120" r="8"/>
+        <text x="-190" y="-146" text-anchor="middle">SİSTEM 1</text>
+        <circle cx="205" cy="-95" r="16" fill="#FF5A5F" opacity="0.25"/><circle cx="205" cy="-95" r="8"/>
+        <text x="205" y="-121" text-anchor="middle">SİSTEM 2</text>
+        <circle cx="120" cy="200" r="16" fill="#FF5A5F" opacity="0.25"/><circle cx="120" cy="200" r="8"/>
+        <text x="120" y="238" text-anchor="middle">SİSTEM 3</text>
+      </g>
+    </svg>
+  </div>
+
+  <div class="footer">
+    <div>
+      <div class="name">Deniz Özçivi</div>
+      <div class="role">IT Manager · LPT Master · MSc Cyber Security</div>
+    </div>
+    <div class="src">Kaynak: NBC News<br>#YapayZekaRadarı</div>
+  </div>
+</body>
+</html>

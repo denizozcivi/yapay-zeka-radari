@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0B1220;
+    --panel: #111A2E;
+    --grid: #1E2A44;
+    --green: #3DDC97;
+    --red: #FF5A5F;
+    --text: #F2F5FA;
+    --muted: #8A97B1;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    width: 1080px; height: 1350px; overflow: hidden;
+    background: var(--bg);
+    font-family: "Inter", sans-serif; color: var(--text);
+    position: relative;
+  }
+  .top {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 64px 72px 0;
+  }
+  .brand {
+    font-family: "JetBrains Mono", monospace; font-weight: 700;
+    font-size: 28px; letter-spacing: 3px; color: var(--green);
+    display: flex; align-items: center; gap: 14px;
+  }
+  .dot { width: 14px; height: 14px; border-radius: 50%; background: var(--green); box-shadow: 0 0 16px var(--green); }
+  .date { font-family: "JetBrains Mono", monospace; font-size: 26px; color: var(--muted); }
+  .tag {
+    display: inline-block; margin: 56px 72px 0;
+    font-family: "JetBrains Mono", monospace; font-size: 22px; font-weight: 700;
+    color: var(--red); border: 2px solid var(--red); border-radius: 8px;
+    padding: 8px 16px; letter-spacing: 2px;
+  }
+  h1 {
+    margin: 28px 72px 0; font-size: 62px; line-height: 1.1; font-weight: 800;
+    letter-spacing: -1.5px;
+  }
+  h1 .hl { color: var(--red); white-space: nowrap; }
+  .sub { margin: 24px 72px 0; font-size: 34px; color: var(--muted); font-weight: 500; }
+  .radar { position: absolute; left: 0; right: 0; top: 490px; display: flex; justify-content: center; }
+  .footer {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    padding: 36px 72px 56px;
+    display: flex; justify-content: space-between; align-items: flex-end;
+    border-top: 1px solid var(--grid);
+  }
+  .name { font-size: 30px; font-weight: 700; }
+  .role { font-size: 22px; color: var(--muted); margin-top: 6px; }
+  .src { font-family: "JetBrains Mono", monospace; font-size: 20px; color: var(--muted); text-align: right; }
+</style>
+</head>
+<body>
+  <div class="top">
+    <div class="brand"><span class="dot"></span>YAPAY ZEKA RADARI</div>
+    <div class="date">{{TARIH}}</div>
+  </div>
+
+  <div class="tag">{{ETIKET}}</div>
+  <h1>{{BASLIK_HTML}}</h1>
+  <div class="sub">{{ALT_SATIR}}</div>
+
+  <div class="radar">
+    {{CIZIM_SVG}}
+  </div>
+
+  <div class="footer">
+    <div>
+      <div class="name">Deniz Özçivi</div>
+      <div class="role">IT Manager · LPT Master · MSc Cyber Security</div>
+    </div>
+    <div class="src">Kaynak: {{KAYNAK}}<br>#YapayZekaRadarı</div>
+  </div>
+</body>
+</html>
