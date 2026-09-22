@@ -22,6 +22,24 @@ def test_tum_alanlar_dolar():
     assert '<circle r="100"' in sonuc
 
 
+def test_fontlar_gomulu_internet_gerekmez():
+    sonuc = render.sablon_doldur(render.SABLON.read_text(encoding="utf-8"), KART)
+    assert "fonts.googleapis.com" not in sonuc
+    assert "data:font/woff2;base64," in sonuc
+
+
+def test_hazir_chromium_varsa_kullanilir(tmp_path, monkeypatch):
+    sahte = tmp_path / "chromium"
+    sahte.write_text("")
+    monkeypatch.delenv("CHROMIUM_PATH", raising=False)
+    monkeypatch.setattr(render, "HAZIR_CHROMIUM", sahte)
+    assert render.chromium_yolu() == str(sahte)
+    monkeypatch.setattr(render, "HAZIR_CHROMIUM", tmp_path / "yok")
+    assert render.chromium_yolu() is None
+    monkeypatch.setenv("CHROMIUM_PATH", "/ozel/chrome")
+    assert render.chromium_yolu() == "/ozel/chrome"
+
+
 def test_duz_metin_alanlari_kacislanir():
     sonuc = render.sablon_doldur(render.SABLON.read_text(encoding="utf-8"), KART)
     assert "KAPSAM &lt;DIŞI&gt;" in sonuc
