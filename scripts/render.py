@@ -10,8 +10,8 @@ SABLON = KOK / "sablon" / "kart.html"
 FONTLAR = KOK / "sablon" / "fontlar.css"  # base64 gömülü, bulutta Google Fonts erişimi yok
 HAZIR_CHROMIUM = Path("/opt/pw-browsers/chromium")  # bulut ortamında önceden kurulu
 GENISLIK, YUKSEKLIK = 1080, 1350
-ALANLAR = ("tarih", "etiket", "baslik_html", "alt_satir", "cizim_svg", "kaynak")
-HAM_ALANLAR = {"baslik_html", "cizim_svg"}  # Claude'un yazdığı HTML/SVG, kaçışsız girer
+ALANLAR = ("tarih", "etiket", "baslik_html", "alt_satir", "gorsel_html", "kaynak")
+HAM_ALANLAR = {"baslik_html", "gorsel_html"}  # Claude'un yazdığı HTML, kaçışsız girer
 
 
 def sablon_doldur(sablon: str, kart: dict) -> str:

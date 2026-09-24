@@ -72,7 +72,7 @@ def yayinla(metin: str, jpeg: bytes, alt_metin: str, kaynak_url: str, token: str
     if os.environ.get("LINKEDIN_ILK_YORUM") != "1":
         return {"post": post, "yorum_hatasi": None}
     try:
-        yorum_yaz(oturum, token, yazar_urn, post, f"Kaynak: {kaynak_url}")
+        yorum_yaz(oturum, token, yazar_urn, post, f"Source: {kaynak_url}")
         yorum_hatasi = None
     except requests.RequestException as e:
         yorum_hatasi = str(e)

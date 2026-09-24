@@ -1,3 +1,4 @@
+import json
 from pathlib import Path
 
 import pytest
@@ -9,7 +10,7 @@ KART = {
     "etiket": "KAPSAM <DIŞI>",
     "baslik_html": 'Test <span class="hl">vurgu</span>',
     "alt_satir": 'Alt "satır"',
-    "cizim_svg": '<svg width="630" height="630" viewBox="-280 -280 560 560"><circle r="100" fill="#3DDC97"/></svg>',
+    "gorsel_html": '<div class="pencere"><div class="cubugu"><b>CVE-0000-0001.json</b></div><pre>{}</pre></div><div class="not">look</div>',
     "kaynak": "NBC News",
 }
 
@@ -19,13 +20,38 @@ def test_tum_alanlar_dolar():
     assert "{{" not in sonuc
     assert "22.09.2026" in sonuc
     assert '<span class="hl">vurgu</span>' in sonuc
-    assert '<circle r="100"' in sonuc
+    assert "<b>CVE-0000-0001.json</b>" in sonuc
+
+
+def test_kart_ingilizce_seri_adini_tasir():
+    sonuc = render.sablon_doldur(render.SABLON.read_text(encoding="utf-8"), KART)
+    assert "AI News" in sonuc
+    assert "Source: NBC News" in sonuc
+    assert "#AINews" in sonuc
+    assert "Kaynak:" not in sonuc
 
 
 def test_fontlar_gomulu_internet_gerekmez():
     sonuc = render.sablon_doldur(render.SABLON.read_text(encoding="utf-8"), KART)
     assert "fonts.googleapis.com" not in sonuc
     assert "data:font/woff2;base64," in sonuc
+
+
+def test_el_yazisi_fontu_gomulu():
+    sonuc = render.sablon_doldur(render.SABLON.read_text(encoding="utf-8"), KART)
+    assert "font-family: 'Caveat'" in sonuc
+
+
+def test_eski_cizim_svg_alani_yetmez():
+    eski = {k: v for k, v in KART.items() if k != "gorsel_html"} | {"cizim_svg": "<svg></svg>"}
+    with pytest.raises(ValueError, match="gorsel_html"):
+        render.sablon_doldur(render.SABLON.read_text(encoding="utf-8"), eski)
+
+
+def test_ornek_kart_sablonu_doldurur():
+    ornek = json.loads((render.KOK / "sablon" / "ornek-kart.json").read_text(encoding="utf-8"))
+    sonuc = render.sablon_doldur(render.SABLON.read_text(encoding="utf-8"), ornek)
+    assert "{{" not in sonuc
 
 
 def test_hazir_chromium_varsa_kullanilir(tmp_path, monkeypatch):

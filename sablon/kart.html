@@ -1,80 +1,111 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <style>{{FONTLAR}}</style>
 <style>
   :root {
-    --bg: #0B1220;
-    --panel: #111A2E;
-    --grid: #1E2A44;
-    --green: #3DDC97;
-    --red: #FF5A5F;
-    --text: #F2F5FA;
-    --muted: #8A97B1;
+    --bg: #F3F0E8;
+    --ink: #151922;
+    --muted: #5E6573;
+    --line: #D8D2C3;
+    --red: #C8283C;
+    --red-soft: rgba(200, 40, 60, 0.22);
+    --code-bg: #141A26;
+    --code-bar: #1D2535;
+    --code-ink: #E4E8EF;
+    --code-muted: #7F889A;
+    --code-red: #FF6B72;
+    --code-green: #4FD69C;
+    --code-blue: #8AB4FF;
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
     width: 1080px; height: 1350px; overflow: hidden;
-    background: var(--bg);
-    font-family: "Inter", sans-serif; color: var(--text);
-    position: relative;
+    background: var(--bg); color: var(--ink);
+    font-family: "Inter", sans-serif;
+    display: flex; flex-direction: column;
+    padding: 60px 72px 0;
   }
-  .top {
-    display: flex; justify-content: space-between; align-items: center;
-    padding: 64px 72px 0;
-  }
-  .brand {
-    font-family: "JetBrains Mono", monospace; font-weight: 700;
-    font-size: 28px; letter-spacing: 3px; color: var(--green);
-    display: flex; align-items: center; gap: 14px;
-  }
-  .dot { width: 14px; height: 14px; border-radius: 50%; background: var(--green); box-shadow: 0 0 16px var(--green); }
-  .date { font-family: "JetBrains Mono", monospace; font-size: 26px; color: var(--muted); }
-  .tag {
-    display: inline-block; margin: 56px 72px 0;
-    font-family: "JetBrains Mono", monospace; font-size: 22px; font-weight: 700;
-    color: var(--red); border: 2px solid var(--red); border-radius: 8px;
-    padding: 8px 16px; letter-spacing: 2px;
-  }
-  h1 {
-    margin: 28px 72px 0; font-size: 62px; line-height: 1.1; font-weight: 800;
-    letter-spacing: -1.5px;
-  }
-  h1 .hl { color: var(--red); white-space: nowrap; }
-  .sub { margin: 24px 72px 0; font-size: 34px; color: var(--muted); font-weight: 500; }
-  .radar { position: absolute; left: 0; right: 0; top: 490px; display: flex; justify-content: center; }
-  .footer {
-    position: absolute; bottom: 0; left: 0; right: 0;
-    padding: 36px 72px 56px;
-    display: flex; justify-content: space-between; align-items: flex-end;
-    border-top: 1px solid var(--grid);
-  }
-  .name { font-size: 30px; font-weight: 700; }
-  .role { font-size: 22px; color: var(--muted); margin-top: 6px; }
-  .src { font-family: "JetBrains Mono", monospace; font-size: 20px; color: var(--muted); text-align: right; }
+
+  /* ---- üst kısım ---- */
+  .ust { display: flex; justify-content: space-between; align-items: baseline;
+         font-size: 24px; color: var(--muted); font-weight: 600; }
+  .ust .seri { color: var(--ink); }
+  .etiket { margin-top: 52px; font-family: "JetBrains Mono", monospace; font-size: 24px; font-weight: 700; color: var(--red); }
+  h1 { margin-top: 16px; font-size: 60px; line-height: 1.1; font-weight: 800; letter-spacing: -1.2px; }
+  h1 .hl { background: linear-gradient(transparent 60%, var(--red-soft) 60%, var(--red-soft) 92%, transparent 92%);
+           padding: 0 4px; margin: 0 -4px; }
+  .alt { margin-top: 20px; font-size: 32px; line-height: 1.3; color: var(--muted); font-weight: 500; }
+
+  /* ---- görsel alanı ---- */
+  .gorsel { flex: 1; display: flex; flex-direction: column; justify-content: center;
+            padding: 36px 0 44px; min-height: 0; }
+
+  /* el yazısı not + ok */
+  .not { font-family: "Caveat", cursive; font-weight: 700; font-size: 42px; line-height: 1.05;
+         color: var(--red); align-self: flex-end; position: relative;
+         padding-left: 70px; transform: rotate(-2.5deg); margin: 18px 12px 0 0; }
+  .not::before { content: ""; position: absolute; left: 4px; top: -30px; width: 58px; height: 52px;
+         background: var(--red);
+         -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 58 52'%3E%3Cpath d='M54 46 C44 30 30 14 8 8 M8 8 L21 4 M8 8 L16 19' fill='none' stroke='black' stroke-width='3.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat center / contain;
+                 mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 58 52'%3E%3Cpath d='M54 46 C44 30 30 14 8 8 M8 8 L21 4 M8 8 L16 19' fill='none' stroke='black' stroke-width='3.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat center / contain; }
+  .not.ust { margin: 0 12px 34px 0; transform: rotate(-2deg); }
+  .not.ust::before { top: auto; bottom: -36px; height: 44px; transform: scaleY(-1); }
+
+  /* elle çizilmiş kutu */
+  .isaret { position: relative; }
+  .isaret::after { content: ""; position: absolute; inset: -3px -12px; pointer-events: none;
+         border: solid var(--code-red); border-width: 3px 3.5px 3px 2.5px;
+         border-radius: 12px 18px 10px 16px / 16px 10px 18px 12px; transform: rotate(-0.7deg); }
+
+  /* pencere: kod, diff, terminal, log, json */
+  .pencere { background: var(--code-bg); border-radius: 14px; color: var(--code-ink); }
+  .pencere + .pencere { margin-top: 22px; }
+  .pencere .cubugu { display: flex; justify-content: space-between; gap: 24px; padding: 16px 26px;
+         background: var(--code-bar); border-radius: 14px 14px 0 0;
+         font-family: "JetBrains Mono", monospace; font-size: 20px; color: var(--code-muted); }
+  .pencere .cubugu b { color: var(--code-ink); font-weight: 700; }
+  .pencere pre, .pencere .satirlar { font-family: "JetBrains Mono", monospace; font-size: 24px; line-height: 1.75; }
+  .pencere pre { padding: 22px 26px 26px; white-space: pre; }
+  .pencere pre .isaret { display: inline-block; }
+  .pencere .satirlar { padding: 20px 0 24px; }
+  .pencere .satirlar > div { white-space: pre; padding: 0 26px; min-height: 1.75em; }
+  .pencere .satirlar > .arti { background: rgba(79, 214, 156, 0.13); }
+  .pencere .satirlar > .eksi { background: rgba(255, 107, 114, 0.15); }
+  .pencere .satirlar > .hunk { color: var(--code-blue); }
+  .pencere .satirlar > .isaret::after { inset: -2px 10px; }
+  .pencere.buyuk pre, .pencere.buyuk .satirlar { font-size: 28px; line-height: 1.8; }
+  .pencere.kucuk pre, .pencere.kucuk .satirlar { font-size: 20px; line-height: 1.7; }
+  .pencere .y { color: var(--code-muted); }
+  .pencere .k { color: var(--code-red); font-weight: 700; }
+  .pencere .g { color: var(--code-green); font-weight: 700; }
+  .pencere .m { color: var(--code-blue); }
+
+  /* ---- alt bilgi ---- */
+  .alt-bilgi { display: flex; justify-content: space-between; align-items: flex-end;
+               border-top: 1.5px solid var(--line); padding: 30px 0 52px; }
+  .ad { font-size: 30px; font-weight: 700; }
+  .unvan { font-size: 22px; color: var(--muted); margin-top: 6px; }
+  .kaynak { font-size: 20px; color: var(--muted); text-align: right; line-height: 1.5; }
 </style>
 </head>
 <body>
-  <div class="top">
-    <div class="brand"><span class="dot"></span>YAPAY ZEKA RADARI</div>
-    <div class="date">{{TARIH}}</div>
-  </div>
-
-  <div class="tag">{{ETIKET}}</div>
+  <div class="ust"><span class="seri">AI News</span><span>{{TARIH}}</span></div>
+  <div class="etiket">{{ETIKET}}</div>
   <h1>{{BASLIK_HTML}}</h1>
-  <div class="sub">{{ALT_SATIR}}</div>
+  <div class="alt">{{ALT_SATIR}}</div>
 
-  <div class="radar">
-    {{CIZIM_SVG}}
+  <div class="gorsel">
+{{GORSEL_HTML}}
   </div>
 
-  <div class="footer">
+  <div class="alt-bilgi">
     <div>
-      <div class="name">Deniz Özçivi</div>
-      <div class="role">IT Manager · LPT Master · MSc Cyber Security</div>
+      <div class="ad">Deniz Özçivi</div>
+      <div class="unvan">IT Manager · LPT Master · MSc Cyber Security</div>
     </div>
-    <div class="src">Kaynak: {{KAYNAK}}<br>#YapayZekaRadarı</div>
+    <div class="kaynak">Source: {{KAYNAK}}<br>#AINews</div>
   </div>
 </body>
 </html>

@@ -32,7 +32,7 @@ def test_yayinla_akisi(monkeypatch):
     assert post_govdesi["content"]["media"]["id"] == "urn:li:image:1"
     assert post_govdesi["commentary"] == r"Merhaba {hashtag|\#|AI}"
     assert oturum.cagrilar[3][1].endswith("/rest/socialActions/urn%3Ali%3Ashare%3A9/comments")
-    assert oturum.cagrilar[3][2]["json"]["message"]["text"] == "Kaynak: https://kaynak"
+    assert oturum.cagrilar[3][2]["json"]["message"]["text"] == "Source: https://kaynak"
 
 
 def test_yorum_hatasi_postu_bozmaz(monkeypatch):
