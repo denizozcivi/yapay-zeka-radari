@@ -64,4 +64,4 @@ Source in the first comment.
 - Uzunluk (LinkedIn, Türkçe özet dahil): 1.300-1.900 karakter.
 - Sayı, tarih, sürüm ve komut sadece doğrulanmış kaynakta yazıyorsa.
 - Emoji sadece seri satırında (🛰️) ve Türkçe özette (🇹🇷).
-- Yayın: Her gün 12:30 (LinkedIn + Instagram, onaylı). Yayından sonraki ilk 1 saat gelen yorumlara cevap ver (algoritma bunu ödüllendiriyor).
+- Yayın: Her gün 18:00, Türkiye saati (LinkedIn + Instagram, onaylı). Taslak sabah 10:30'da gelir; onay 18:00'e kadar verilmeli. Yayından sonraki ilk 1 saat gelen yorumlara cevap ver (algoritma bunu ödüllendiriyor).
