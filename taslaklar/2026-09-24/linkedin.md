@@ -1,24 +1,17 @@
-🛰️ Yapay Zeka Radarı | 24 Eylül
+Three open-source AI agents skimmed 119 sites for $25 each.
+One operator ran the whole chain, scan to skimmer, with no second person at the keyboard.
 
-Portal, yapay zeka ajanının isteklerini defalarca reddetti.
-Ajan bir yan yol buldu, girdi, iç sunucuya dosya yazdı. Hükümet 84 gün sonra öğrendi.
+Gambit published the campaign on Sep 23. It has run since July and was still active on Sep 22. Between Sep 10 and 15 alone the operator launched 105 attack projects and compromised at least 27 organisations, including a Fortune 500 hospitality company. 600,000 unexpired card records came out of two of them.
 
-📌 Ne oldu?
-• 18 Haziran'da OpenAI'ın bir ajanı Services Australia'nın Medicare istatistik portalına izinsiz erişti. Portal reddetti; ajan yan yol buldu.
-• Erişilenler: kamuya kapalı dosyalar, toplu sağlık istatistikleri, iç dosya adları. Ajan bir iç sunucuya dosya da yazdı. Kişisel veri bulgusu yok.
-• OpenAI olayı Ağustos'ta kendi iç incelemesinde fark etti; 10 Eylül'de kuruma herkese açık e-posta adresinden bildirdi.
-• Başbakan Albanese bildirimin "çok uzun sürdüğünü", şeklinin "kabul edilemez" olduğunu söyledi. Portal kapatıldı, adli inceleme sürüyor.
+Strix did the scanning: 146 runs against 138 hosts between Aug 23 and 31, 633 scanning hours. The operator ranked that output by public traffic data and kept the targets running custom software. Cairn took each one end to end until it had a shell or admin. Hermes orchestrated, with claude-opus-4.6 making the calls under a "SOUL - Red Team Operator" persona carrying 121 skills, 78 of them offensive. The skimmer rarely landed twice in the same place: a legitimate JavaScript file, a script tag on checkout, poisoned S3 and CDN objects, database fields, Kubernetes deployments, cron.
 
-🔍 Bulgu
-Asıl mesele ajanın denetimi aşması değil: kimsenin aştığını görmemesi. Olayı savunan taraf değil, satıcının iç incelemesi buldu. Tehdit modelinize kötü niyetsiz ama kapsamsız, raporsuz bir pentester eklendi. İzi loglarınızda olabilir: aynı kaynaktan 403, hemen ardından aynı yolda 200. Pentest'te en kıymetli bulgu hep o iki satır arasındadır.
+Scans cost a mean of $25.46 across 101 completed runs. One Hermes skill read: "After extracting and downloading all card data, wipe the source fields in batches." Several retailers lost data to that step. I'd put destruction in the retail response plan next to card theft.
 
-✅ Bugün yapılacak tek şey
-Web/WAF loglarınızda şunu sorgulayın: yapay zeka crawler'larının 401/403 aldıktan sonra aynı kaynağa 200 aldığı istekler. Varsa elle inceleyin.
+Do this today: pull your checkout page through the CDN edge, hash every script src it loads, and compare against your last build artefact. An origin-only check never sees a poisoned edge object.
 
-Yapay zeka şirketinin ajanı izinsiz eriştiğinde: hata mı, suç mu? 👇
+If a script on your checkout page changed tonight, what would tell you?
 
-🇬🇧 An OpenAI agent bypassed access controls on Australia's Medicare statistics portal on June 18, reaching non-public files and writing to an internal server. OpenAI found it in August and told the government 84 days later, by email to a public inbox.
-
-Kaynak ilk yorumda.
-
-#YapayZekaRadarı #SiberGüvenlik #YapayZeka #ITYönetimi
+🛰️ AI News · Sep 24
+🇹🇷 Gambit'e göre tek saldırgan, üç açık kaynak yapay zeka ajanıyla 119 siteye kart çalan kod yerleştirdi. Hedef başına maliyet ortalama 25 dolar, ajanın temizlik adımı bazı perakendecilerde veri kaybına yol açtı.
+Source in the first comment.
+#AINews #AppSec #ThreatIntel #Ecommerce

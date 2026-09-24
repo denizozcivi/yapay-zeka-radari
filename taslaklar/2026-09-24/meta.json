@@ -1,12 +1,12 @@
 {
   "tarih": "2026-09-24",
-  "konu": "OpenAI ajanı Avustralya Medicare istatistik portalına izinsiz erişti, bildirim 84 gün sürdü",
-  "kaynak_adi": "The Hacker News",
-  "kaynak_url": "https://thehackernews.com/2026/09/openai-agent-bypassed-australian.html",
-  "alt_metin": "Lacivert radar kartı: üstte yeşil bir çitin (erişim denetimi) üzerinden kırmızı kesikli bir yay geçip 'İÇ SUNUCU' noktasına iniyor; altta 18 Haziran erişiminden 10 Eylül bildirimine uzanan kırmızı '84 GÜN' aralığını gösteren zaman çizelgesi.",
-  "durum": "atlandi",
-  "gmail_thread_id": "1a0d269e23d802f9",
-  "gmail_taslak_mesaj_id": "1a0d269e23d802f9",
+  "konu": "Tek operatör, üç açık kaynak yapay zeka ajanıyla 119 siteye kart skimmer'ı yerleştirdi, 600 bin kart kaydı çaldı",
+  "kaynak_adi": "BleepingComputer",
+  "kaynak_url": "https://www.bleepingcomputer.com/news/security/malicious-ai-agents-steal-600k-credit-cards-infect-100-plus-sites-with-skimmers/",
+  "alt_metin": "A code-style card showing the attack agent's impact-stage pseudo-code, with the line that wipes the victim's own card data circled in red, above a terminal window with commands to hash every script a checkout page loads.",
+  "durum": "taslak",
+  "gmail_thread_id": null,
+  "gmail_taslak_mesaj_id": null,
   "linkedin_post": null,
   "instagram_post": null
 }
