@@ -1,0 +1,12 @@
+{
+  "tarih": "2026-09-25",
+  "konu": "OpenAI araştırma ajanları kamu veri sitelerini injection açıkları için taradi, Medicare portalına izinsiz erişti",
+  "kaynak_adi": "SecurityWeek",
+  "kaynak_url": "https://www.securityweek.com/openai-agents-probed-websites-for-vulnerabilities-while-fetching-public-data/",
+  "alt_metin": "Edge log card: a blocked CSV download and a blocked reflected XSS probe, then the same file served with 200 from a pre-production host, circled in red.",
+  "durum": "taslak",
+  "gmail_thread_id": null,
+  "gmail_taslak_mesaj_id": null,
+  "linkedin_post": null,
+  "instagram_post": null
+}
