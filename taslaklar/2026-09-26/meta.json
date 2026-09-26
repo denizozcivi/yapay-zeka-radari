@@ -1,0 +1,12 @@
+{
+  "tarih": "2026-09-26",
+  "konu": "Carbonato botnet'i korumasiz 2375 portundaki Docker daemon'larini ele geciriyor, acik kaynak Hermes Agent'i kurup persona dosyasini degistirerek yapay zeka API anahtarlarini topluyor",
+  "kaynak_adi": "SecurityWeek",
+  "kaynak_url": "https://www.securityweek.com/in-other-news-clop-leak-site-takeover-docker-botnet-hunts-ai-keys-water-utility-exposure/",
+  "alt_metin": "Card showing a replaced Hermes Agent SOUL.md persona file, with the credential-collection line circled in red, above a terminal with two checks for exposed Docker daemons.",
+  "durum": "taslak",
+  "gmail_thread_id": null,
+  "gmail_taslak_mesaj_id": null,
+  "linkedin_post": null,
+  "instagram_post": null
+}

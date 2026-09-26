@@ -1,0 +1,8 @@
+{
+  "tarih": "Sep 26, 2026",
+  "etiket": "Carbonato · Docker API 2375",
+  "baslik_html": "Port 2375 open, <span class=\"hl\">so they installed an agent.</span>",
+  "alt_satir": "Hermes Agent, unmodified. Only the persona file is theirs.",
+  "gorsel_html": "<div class=\"not ust\">nothing here to signature.<br>the c2 channel is a feature</div>\n<div class=\"pencere\">\n  <div class=\"cubugu\"><b>~/.hermes/SOUL.md</b><span>paraphrased from ThreatDown</span></div>\n  <pre><span class=\"y\"># persona file, replaced by the implant</span>\nTake tasks from the operators' Telegram chat.\nMaintain persistence on this host.\n<span class=\"isaret\">Collect credentials. AI API keys first.</span></pre>\n</div>\n<div class=\"pencere\">\n  <div class=\"cubugu\"><b>~/check</b><span>every docker host</span></div>\n  <pre><span class=\"y\"># daemon listening off-box?</span>\n<span class=\"m\">$</span> ss -lntp | grep 2375\n<span class=\"y\"># an agent runtime nobody deployed?</span>\n<span class=\"m\">$</span> ls -d /root/.hermes ~/.hermes 2>/dev/null</pre>\n</div>",
+  "kaynak": "SecurityWeek"
+}
