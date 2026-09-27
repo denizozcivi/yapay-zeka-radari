@@ -1,0 +1,12 @@
+{
+  "tarih": "2026-09-27",
+  "konu": "Zenity Labs'in SalesBleed adini verdigi uc Agentforce acigi, herkese acik Web-to-Lead formuna birakilan dolayli prompt injection ile sifir tikla CRM verisi sizdirilmasina ve ajanin kimligiyle Slack'e phishing atilmasina izin veriyordu",
+  "kaynak_adi": "SecurityWeek",
+  "kaynak_url": "https://www.securityweek.com/salesbleed-flaws-in-salesforce-agentforce-enabled-zero-click-data-exfiltration/",
+  "alt_metin": "Card showing a Salesforce lead record whose description field carries a hidden instruction, circled in red, telling the agent to load account emails into an image URL.",
+  "durum": "taslak",
+  "gmail_thread_id": null,
+  "gmail_taslak_mesaj_id": null,
+  "linkedin_post": null,
+  "instagram_post": null
+}
