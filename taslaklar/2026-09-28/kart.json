@@ -1,0 +1,8 @@
+{
+  "tarih": "Sep 28, 2026",
+  "etiket": "x47.c botnet · AI API draining",
+  "baslik_html": "Your stolen LLM key now <span class=\"hl\">runs up the bill.</span>",
+  "alt_satir": "Requests go straight to the provider, so your logs stay flat.",
+  "gorsel_html": "<div class=\"not ust\">your app never sees<br>these requests</div>\n<div class=\"pencere kucuk\">\n  <div class=\"cubugu\"><b>ai_api_drain</b><span>pseudo-code</span></div>\n  <pre><span class=\"y\"># operator supplies: model name + stolen API key</span>\n<span class=\"isaret\">POST https://api.&lt;provider&gt;/v1/chat/completions</span>\n  Authorization: Bearer &lt;victim key&gt;\n<span class=\"y\"># no gateway, no app log, the bill still lands</span></pre>\n</div>\n<div class=\"pencere\">\n  <div class=\"cubugu\"><b>~/check</b><span>LLM keys + spend</span></div>\n  <pre><span class=\"y\"># where do live keys sit?</span>\n<span class=\"m\">$</span> grep -rn \"OPENAI_API_KEY\" .env* .github/\n<span class=\"y\"># provider usage vs your own call count</span>\n<span class=\"m\">$</span> grep -c \"chat/completions\" app.log</pre>\n</div>",
+  "kaynak": "SecurityWeek"
+}

@@ -1,0 +1,12 @@
+{
+  "tarih": "2026-09-28",
+  "konu": "Qrator Labs'in belgeledigi x47.c Windows botnet'i, 18 saldiri yonteminden biri olarak calinan OpenAI ve xAI anahtarlariyla dogrudan saglayiciya faturali istek gonderen AI API draining'i satiyor; ayni panel Grok'a kalicilik adimlarini sectiriyor",
+  "kaynak_adi": "SecurityWeek",
+  "kaynak_url": "https://www.securityweek.com/new-x47-c-windows-botnet-weaponizes-xai-grok-ai-api-draining/",
+  "alt_metin": "Card showing a pseudo-code chat-completions request sent with a stolen API key, circled in red, above a terminal with two checks for where LLM keys live and how provider usage compares with the app's own call count.",
+  "durum": "taslak",
+  "gmail_thread_id": null,
+  "gmail_taslak_mesaj_id": null,
+  "linkedin_post": null,
+  "instagram_post": null
+}
