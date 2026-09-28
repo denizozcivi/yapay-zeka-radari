@@ -10,17 +10,45 @@ KART = {
     "etiket": "KAPSAM <DIŞI>",
     "baslik_html": 'Test <span class="hl">vurgu</span>',
     "alt_satir": 'Alt "satır"',
-    "gorsel_html": '<div class="pencere"><div class="cubugu"><b>CVE-0000-0001.json</b></div><pre>{}</pre></div><div class="not">look</div>',
+    "gorsel_html": '<div class="panel"><h3><i class="ik i-kod m"></i>CVE-0000-0001</h3><pre>{}</pre></div>',
     "kaynak": "NBC News",
 }
 
 
+def doldur(kart: dict) -> str:
+    return render.sablon_doldur(render.SABLON.read_text(encoding="utf-8"), kart)
+
+
 def test_tum_alanlar_dolar():
-    sonuc = render.sablon_doldur(render.SABLON.read_text(encoding="utf-8"), KART)
+    sonuc = doldur(KART)
     assert "{{" not in sonuc
     assert "22.09.2026" in sonuc
     assert '<span class="hl">vurgu</span>' in sonuc
-    assert "<b>CVE-0000-0001.json</b>" in sonuc
+    assert "<h3><i class=\"ik i-kod m\"></i>CVE-0000-0001</h3>" in sonuc
+
+
+def test_sablon_ikon_setini_tanimlar():
+    assert {"saldirgan", "web", "sunucu", "terminal", "ajan", "bocek", "kalkan", "uyari"} <= render.ikonlar(
+        render.SABLON.read_text(encoding="utf-8"))
+
+
+def test_ikon_yazilmazsa_varsayilan_basliga_girer():
+    assert f'class="ik i-{render.IKON_VARSAYILAN}"' in doldur(KART)
+
+
+def test_ikon_alani_basliga_girer():
+    assert 'class="ik i-sunucu"' in doldur(KART | {"ikon": "sunucu"})
+
+
+def test_bilinmeyen_baslik_ikonu_hata_verir():
+    with pytest.raises(ValueError, match="radar"):
+        doldur(KART | {"ikon": "radar"})
+
+
+def test_gorseldeki_bilinmeyen_ikon_hata_verir():
+    kart = KART | {"gorsel_html": '<div class="panel"><i class="ik i-uzayli k"></i></div>'}
+    with pytest.raises(ValueError, match="uzayli"):
+        doldur(kart)
 
 
 def test_kart_ingilizce_seri_adini_tasir():
@@ -35,11 +63,6 @@ def test_fontlar_gomulu_internet_gerekmez():
     sonuc = render.sablon_doldur(render.SABLON.read_text(encoding="utf-8"), KART)
     assert "fonts.googleapis.com" not in sonuc
     assert "data:font/woff2;base64," in sonuc
-
-
-def test_el_yazisi_fontu_gomulu():
-    sonuc = render.sablon_doldur(render.SABLON.read_text(encoding="utf-8"), KART)
-    assert "font-family: 'Caveat'" in sonuc
 
 
 def test_eski_cizim_svg_alani_yetmez():
@@ -87,3 +110,25 @@ def test_jpeg_boyutu(tmp_path: Path):
     with Image.open(cikti) as resim:
         assert resim.format == "JPEG"
         assert resim.size == (1080, 1350)
+
+
+@pytest.mark.tarayici
+def test_ornek_kart_tasmadan_render_olur(tmp_path: Path):
+    ornek = json.loads((render.KOK / "sablon" / "ornek-kart.json").read_text(encoding="utf-8"))
+    render.jpeg_uret(doldur(ornek), tmp_path / "kart.jpg")
+
+
+@pytest.mark.tarayici
+def test_tasan_kod_satiri_hata_verir_ama_jpeg_yazilir(tmp_path: Path):
+    uzun = KART | {"gorsel_html": '<div class="panel"><pre>' + "x" * 300 + "</pre></div>"}
+    cikti = tmp_path / "kart.jpg"
+    with pytest.raises(ValueError, match="taşıyor"):
+        render.jpeg_uret(doldur(uzun), cikti)
+    assert cikti.exists()
+
+
+@pytest.mark.tarayici
+def test_alt_bilgiye_tasan_pano_hata_verir(tmp_path: Path):
+    kalabalik = KART | {"gorsel_html": '<div class="panel"><p>satır</p></div>' * 30}
+    with pytest.raises(ValueError, match="pano"):
+        render.jpeg_uret(doldur(kalabalik), tmp_path / "kart.jpg")

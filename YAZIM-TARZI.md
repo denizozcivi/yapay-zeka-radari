@@ -55,9 +55,9 @@ Source in the first comment.
 4. Türkiye'den yapay zeka haberi varsa haftada 1 kez
 
 ## Görsel (her posta 1 kart)
-- Kart bir kod tabanı ya da terminal sayfası gibi görünür: haberin konusu olan gerçek diff, kod, log, advisory kaydı ya da kontrol komutu. Üstünde tek bir kırmızı kutu ve Deniz'in el yazısı notu.
+- Kart tek sayfalık bir güvenlik brifingi (infografik): ikonlu başlık, "What is it?", 4 satırlık künye, 4 adımda "How it works", saldırgandan etkiye akış şeması, iki kanıt paneli (payload/diff/istek/log/kontrol komutu), "How to defend" listesi ve tek cümlelik slogan.
 - **kart.json'u `.claude/skills/kart-gorseli/SKILL.md`'ye göre yaz.** Şablon: `sablon/kart.html`, örnek: `sablon/ornek-kart.json`.
-- Boyut: 1080×1350 (4:5 dikey). Açık (kağıt) zemin, koyu kod pencereleri, vurgu rengi kırmızı.
+- Boyut: 1080×1350 (4:5 dikey). Koyu lacivert zemin, paneller; mavi etiket, kırmızı tehlike, yeşil çözüm.
 - Kart tamamen İngilizce. Başlık en fazla 2 satır. Altta her zaman isim + unvan + `#AINews`.
 
 ## Kurallar
