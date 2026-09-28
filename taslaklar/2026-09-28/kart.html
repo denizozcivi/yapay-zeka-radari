@@ -60,113 +60,231 @@
 </style>
 <style>
   :root {
-    --bg: #F3F0E8;
-    --ink: #151922;
-    --muted: #5E6573;
-    --line: #D8D2C3;
-    --red: #C8283C;
-    --red-soft: rgba(200, 40, 60, 0.22);
-    --code-bg: #141A26;
-    --code-bar: #1D2535;
-    --code-ink: #E4E8EF;
-    --code-muted: #7F889A;
-    --code-red: #FF6B72;
-    --code-green: #4FD69C;
-    --code-blue: #8AB4FF;
+    --bg: #0A1220;
+    --panel: #0F1A2C;
+    --panel-line: #1F2F4A;
+    --ink: #F2F5FA;
+    --text: #C6CFDD;
+    --muted: #8391A7;
+    --red: #FF4F4F;
+    --red-soft: rgba(255, 79, 79, 0.10);
+    --blue: #4EA1FF;
+    --green: #3DDC97;
+    --code-bg: #08111E;
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
     width: 1080px; height: 1350px; overflow: hidden;
-    background: var(--bg); color: var(--ink);
+    background: radial-gradient(1200px 700px at 85% -10%, #13243F 0%, transparent 60%), var(--bg);
+    color: var(--text);
     font-family: "Inter", sans-serif;
     display: flex; flex-direction: column;
-    padding: 60px 72px 0;
+    padding: 40px 44px 0;
   }
+  .k { color: var(--red); font-weight: 700; }
+  .m { color: var(--blue); }
+  .g { color: var(--green); }
+  .y { color: var(--muted); }
+  em { font-style: normal; font-weight: 500; color: var(--muted); }
 
   /* ---- üst kısım ---- */
   .ust { display: flex; justify-content: space-between; align-items: baseline;
-         font-size: 24px; color: var(--muted); font-weight: 600; }
-  .ust .seri { color: var(--ink); }
-  .etiket { margin-top: 52px; font-family: "JetBrains Mono", monospace; font-size: 24px; font-weight: 700; color: var(--red); }
-  h1 { margin-top: 16px; font-size: 60px; line-height: 1.1; font-weight: 800; letter-spacing: -1.2px; }
-  h1 .hl { background: linear-gradient(transparent 60%, var(--red-soft) 60%, var(--red-soft) 92%, transparent 92%);
-           padding: 0 4px; margin: 0 -4px; }
-  .alt { margin-top: 20px; font-size: 32px; line-height: 1.3; color: var(--muted); font-weight: 500; }
+         font-family: "JetBrains Mono", monospace; font-size: 19px; color: var(--muted); }
+  .ust b { color: var(--ink); letter-spacing: 1px; text-transform: uppercase; }
+  .baslik { display: flex; gap: 24px; align-items: center; margin-top: 22px; }
+  .baslik-ikon { flex: none; width: 92px; height: 92px; border-radius: 18px; display: grid; place-items: center;
+                 background: var(--red-soft); border: 2px solid rgba(255, 79, 79, 0.55); color: var(--ink); }
+  .baslik-ikon .ik { width: 54px; height: 54px; }
+  h1 { font-size: 50px; line-height: 1.08; font-weight: 800; letter-spacing: -0.6px; color: var(--ink); text-wrap: balance; }
+  h1 .hl { color: var(--red); }
+  .alt { margin-top: 8px; font-size: 24px; line-height: 1.3; color: var(--text); }
 
-  /* ---- görsel alanı ---- */
-  .gorsel { flex: 1; display: flex; flex-direction: column; justify-content: center;
-            padding: 36px 0 44px; min-height: 0; }
+  /* ---- pano: gorsel_html buraya girer ---- */
+  .pano { flex: 1; min-height: 0; display: flex; flex-direction: column; justify-content: center; gap: 14px;
+          padding: 24px 0 20px; }
+  .sira { display: grid; gap: 14px; }
+  .sira.uc { grid-template-columns: 1fr 1fr 1fr; }
+  .sira.iki { grid-template-columns: 1fr 1fr; }
+  .sira > * { min-width: 0; }
 
-  /* el yazısı not + ok */
-  .not { font-family: "Caveat", cursive; font-weight: 700; font-size: 42px; line-height: 1.05;
-         color: var(--red); align-self: flex-end; position: relative;
-         padding-left: 70px; transform: rotate(-2.5deg); margin: 18px 12px 0 0; }
-  .not::before { content: ""; position: absolute; left: 4px; top: -30px; width: 58px; height: 52px;
-         background: var(--red);
-         -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 58 52'%3E%3Cpath d='M54 46 C44 30 30 14 8 8 M8 8 L21 4 M8 8 L16 19' fill='none' stroke='black' stroke-width='3.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat center / contain;
-                 mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 58 52'%3E%3Cpath d='M54 46 C44 30 30 14 8 8 M8 8 L21 4 M8 8 L16 19' fill='none' stroke='black' stroke-width='3.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat center / contain; }
-  .not.ust { margin: 0 12px 34px 0; transform: rotate(-2deg); }
-  .not.ust::before { top: auto; bottom: -36px; height: 44px; transform: scaleY(-1); }
+  .panel { background: var(--panel); border: 1.5px solid var(--panel-line); border-radius: 12px; padding: 18px 20px; }
+  .panel h3 { display: flex; align-items: center; gap: 10px; font-size: 22px; font-weight: 800; color: var(--ink);
+              margin-bottom: 12px; }
+  .panel h3.g { color: var(--green); }
+  .panel h3 .ik { width: 28px; height: 28px; }
+  .panel p { font-size: 19px; line-height: 1.42; }
+  .panel p + p, .panel p + pre, .panel pre + p { margin-top: 10px; }
+  .panel .etk { font-size: 16px; font-weight: 700; color: var(--blue); margin: 12px 0 6px; }
+  .panel p.aciklama { font-size: 16px; color: var(--muted); }
 
-  /* elle çizilmiş kutu */
-  .isaret { position: relative; }
-  .isaret::after { content: ""; position: absolute; inset: -3px -12px; pointer-events: none;
-         border: solid var(--code-red); border-width: 3px 3.5px 3px 2.5px;
-         border-radius: 12px 18px 10px 16px / 16px 10px 18px 12px; transform: rotate(-0.7deg); }
+  /* künye: ikon + mavi etiket + değer */
+  .kunye { list-style: none; display: flex; flex-direction: column; gap: 14px; }
+  .kunye li { position: relative; padding-left: 46px; font-size: 18px; line-height: 1.35; }
+  .kunye li > .ik { position: absolute; left: 0; top: 4px; width: 32px; height: 32px; }
+  .kunye li > b { display: block; font-size: 17px; color: var(--blue); }
 
-  /* pencere: kod, diff, terminal, log, json */
-  .pencere { background: var(--code-bg); border-radius: 14px; color: var(--code-ink); }
-  .pencere + .pencere { margin-top: 22px; }
-  .pencere .cubugu { display: flex; justify-content: space-between; gap: 24px; padding: 16px 26px;
-         background: var(--code-bar); border-radius: 14px 14px 0 0;
-         font-family: "JetBrains Mono", monospace; font-size: 20px; color: var(--code-muted); }
-  .pencere .cubugu b { color: var(--code-ink); font-weight: 700; }
-  .pencere pre, .pencere .satirlar { font-family: "JetBrains Mono", monospace; font-size: 24px; line-height: 1.75; }
-  .pencere pre { padding: 22px 26px 26px; white-space: pre; }
-  .pencere pre .isaret { display: inline-block; }
-  .pencere .satirlar { padding: 20px 0 24px; }
-  .pencere .satirlar > div { white-space: pre; padding: 0 26px; min-height: 1.75em; }
-  .pencere .satirlar > .arti { background: rgba(79, 214, 156, 0.13); }
-  .pencere .satirlar > .eksi { background: rgba(255, 107, 114, 0.15); }
-  .pencere .satirlar > .hunk { color: var(--code-blue); }
-  .pencere .satirlar > .isaret::after { inset: -2px 10px; }
-  .pencere.buyuk pre, .pencere.buyuk .satirlar { font-size: 28px; line-height: 1.8; }
-  .pencere.kucuk pre, .pencere.kucuk .satirlar { font-size: 20px; line-height: 1.7; }
-  .pencere .y { color: var(--code-muted); }
-  .pencere .k { color: var(--code-red); font-weight: 700; }
-  .pencere .g { color: var(--code-green); font-weight: 700; }
-  .pencere .m { color: var(--code-blue); }
+  /* numaralı adımlar */
+  .adimlar { list-style: none; counter-reset: adim; display: flex; flex-direction: column; gap: 12px; }
+  .adimlar li { counter-increment: adim; position: relative; padding-left: 42px; font-size: 18px; line-height: 1.38; }
+  .adimlar li::before { content: counter(adim); position: absolute; left: 0; top: 0; width: 28px; height: 28px;
+         border-radius: 50%; background: var(--blue); color: #fff; font-size: 16px; font-weight: 800;
+         display: grid; place-items: center; }
+
+  /* akış şeridi */
+  .akis { display: flex; align-items: center; gap: 6px; padding: 18px 22px; }
+  .dugum { flex: none; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 4px;
+           max-width: 190px; }
+  .dugum > .ik { width: 64px; height: 64px; margin-bottom: 6px; }
+  .dugum b { font-size: 17px; font-weight: 700; color: var(--ink); }
+  .dugum span { font-size: 14px; color: var(--muted); }
+  .dugum.mekanizma { border: 2px dashed #36588A; border-radius: 10px; padding: 10px 14px 8px; gap: 6px; }
+  .dugum.mekanizma b { color: var(--blue); font-size: 15px; }
+  .dugum code { font-family: "JetBrains Mono", monospace; font-size: 16px; font-weight: 700; color: #FF8A80;
+                background: var(--red-soft); border: 1.5px solid rgba(255, 79, 79, 0.6); border-radius: 6px;
+                padding: 4px 10px; white-space: nowrap; }
+  .ok { flex: 1; min-width: 70px; position: relative; text-align: center; font-size: 14px; line-height: 1.25;
+        color: var(--text); padding: 0 4px 16px; }
+  .ok::after { content: ""; position: absolute; left: 4px; right: 12px; bottom: 0; height: 2.5px; background: var(--red); }
+  .ok::before { content: ""; position: absolute; right: 2px; bottom: -5px;
+                border-left: 12px solid var(--red); border-top: 6px solid transparent; border-bottom: 6px solid transparent; }
+
+  /* kod kutusu */
+  .panel pre { font-family: "JetBrains Mono", monospace; font-size: 15px; line-height: 1.55; color: #D9E1EE;
+               background: var(--code-bg); border: 1px solid var(--panel-line); border-radius: 8px;
+               padding: 10px 14px; white-space: pre; overflow: hidden; }
+  .uyari-kutu { position: relative; margin-top: 12px; padding: 10px 14px 10px 50px; font-size: 15px; line-height: 1.35;
+                color: #FFB4AE; background: var(--red-soft); border: 1.5px solid rgba(255, 79, 79, 0.6); border-radius: 8px; }
+  .uyari-kutu > .ik { position: absolute; left: 14px; top: 50%; margin-top: -13px; width: 26px; height: 26px; color: var(--red); }
+
+  /* kontrol listesi */
+  .kontrol { list-style: none; columns: 2; column-gap: 28px; }
+  .kontrol li { position: relative; padding-left: 34px; font-size: 18px; line-height: 1.38; margin-bottom: 8px;
+                break-inside: avoid; }
+  .kontrol li::before { content: ""; position: absolute; left: 0; top: 2px; width: 22px; height: 22px;
+                        background: var(--green); -webkit-mask: var(--i-tik) center / contain no-repeat;
+                        mask: var(--i-tik) center / contain no-repeat; }
+  .kontrol.tek { columns: 1; }
+
+  /* ortalanmış tek satır, iki yanında çizgi (satır içi, <b> ve .k serbest) */
+  .slogan { overflow: hidden; text-align: center; font-size: 22px; color: var(--text); white-space: nowrap; }
+  .slogan::before, .slogan::after { content: ""; display: inline-block; position: relative; width: 50%; height: 1.5px;
+                                    vertical-align: middle; background: var(--panel-line); }
+  .slogan::before { right: 22px; margin-left: -50%; }
+  .slogan::after { left: 22px; margin-right: -50%; }
+  .slogan b { color: var(--ink); }
+
+  /* ---- ikonlar: <i class="ik i-ad"></i>, renk için k / m / g ---- */
+  .ik { display: inline-block; flex: none; width: 28px; height: 28px; background: currentColor;
+        -webkit-mask: var(--i) center / contain no-repeat; mask: var(--i) center / contain no-repeat; }
+  :root {
+    --i-tik: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'><path d='m4 12.5 5 5L20 6.5'/></svg>");
+  }
+  .i-saldirgan { --i: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'><path d='M4 21.5v-.5a8 8 0 0 1 16 0v.5'/><path d='M6.5 12.5V9a5.5 5.5 0 0 1 11 0v3.5c0 2-2.5 3.5-5.5 3.5s-5.5-1.5-5.5-3.5z'/><path d='M9 10.5c1 .8 2 .8 3 0M12 10.5c1 .8 2 .8 3 0'/></svg>"); }
+  .i-web { --i: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'><rect x='2.5' y='3.5' width='19' height='17' rx='2'/><path d='M2.5 8.5h19M6 6h.01M8.5 6h.01M11 6h.01M7 13h10M7 16.5h6'/></svg>"); }
+  .i-sunucu { --i: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'><rect x='3' y='2.5' width='18' height='5.5' rx='1.2'/><rect x='3' y='9.5' width='18' height='5.5' rx='1.2'/><rect x='3' y='16.5' width='18' height='5.5' rx='1.2'/><path d='M6.5 5.2h.01M6.5 12.2h.01M6.5 19.2h.01M11 5.2h6M11 12.2h6M11 19.2h6'/></svg>"); }
+  .i-terminal { --i: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'><rect x='2.5' y='4' width='19' height='16' rx='2'/><path d='m7 9.5 3 2.5-3 2.5M12.5 15H17'/></svg>"); }
+  .i-ajan { --i: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'><rect x='4' y='8' width='16' height='12' rx='3'/><path d='M12 8V4.5M10 3.5h4M9 13v1.5M15 13v1.5M2 12.5v3.5M22 12.5v3.5M9.5 17.5h5'/></svg>"); }
+  .i-model { --i: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'><path d='M10 3l1.8 5.2L17 10l-5.2 1.8L10 17l-1.8-5.2L3 10l5.2-1.8z'/><path d='M18.5 14.5l.8 2.2 2.2.8-2.2.8-.8 2.2-.8-2.2-2.2-.8 2.2-.8z'/></svg>"); }
+  .i-paket { --i: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'><path d='M21 7.5 12 2.5 3 7.5v9l9 5 9-5z'/><path d='m3 7.5 9 5 9-5M12 12.5v9'/></svg>"); }
+  .i-git { --i: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'><circle cx='6' cy='5' r='2.2'/><circle cx='6' cy='19' r='2.2'/><circle cx='18' cy='7' r='2.2'/><path d='M6 7.2v9.6M18 9.2v.8a4 4 0 0 1-4 4h-4a4 4 0 0 0-4 2.6'/></svg>"); }
+  .i-veritabani { --i: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'><ellipse cx='12' cy='5' rx='8' ry='2.8'/><path d='M4 5v14c0 1.5 3.6 2.8 8 2.8s8-1.3 8-2.8V5M4 12c0 1.5 3.6 2.8 8 2.8s8-1.3 8-2.8'/></svg>"); }
+  .i-bulut { --i: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'><path d='M7 19a5 5 0 0 1-.7-9.95A6 6 0 0 1 17.8 9 4.5 4.5 0 0 1 17.5 19z'/></svg>"); }
+  .i-kullanici { --i: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'><circle cx='12' cy='8' r='4'/><path d='M4 21a8 8 0 0 1 16 0'/></svg>"); }
+  .i-eposta { --i: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'><rect x='3' y='5' width='18' height='14' rx='2'/><path d='m3 7 9 6 9-6'/></svg>"); }
+  .i-anahtar { --i: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'><circle cx='7.5' cy='15.5' r='4.5'/><path d='M10.7 12.3 20 3M16 7l3 3M13.5 9.5l2 2'/></svg>"); }
+  .i-kilit { --i: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'><rect x='4' y='11' width='16' height='10' rx='2'/><path d='M8 11V7a4 4 0 0 1 8 0v4M12 15v2'/></svg>"); }
+  .i-bocek { --i: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'><rect x='7.5' y='7.5' width='9' height='13' rx='4.5'/><path d='M9.5 7.5a2.5 2.5 0 0 1 5 0M12 11v9.5M3.5 13.5h4M16.5 13.5h4M4.5 8.5l3 2M19.5 8.5l-3 2M4.5 19.5l3-2M19.5 19.5l-3-2'/></svg>"); }
+  .i-kalkan { --i: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'><path d='M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z'/><path d='m8.5 12 2.5 2.5 4.5-5'/></svg>"); }
+  .i-uyari { --i: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M10.3 3.9 2.4 18a2 2 0 0 0 1.7 3h15.8a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z'/><path d='M12 9v4.5M12 17.2h.01'/></svg>"); }
+  .i-disli { --i: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'><circle cx='12' cy='12' r='3'/><circle cx='12' cy='12' r='7'/><path d='M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1 7 17M17 7l2.1-2.1'/></svg>"); }
+  .i-kod { --i: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='m8 7-5 5 5 5M16 7l5 5-5 5M14 4l-4 16'/></svg>"); }
+  .i-kure { --i: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'><circle cx='12' cy='12' r='9'/><path d='M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18'/></svg>"); }
+  .i-hedef { --i: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'><circle cx='12' cy='12' r='9'/><circle cx='12' cy='12' r='5'/><circle cx='12' cy='12' r='1.2'/></svg>"); }
+  .i-simsek { --i: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'><path d='M13 2 4 14h7l-1 8 9-12h-7z'/></svg>"); }
+  .i-zil { --i: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'><path d='M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9'/><path d='M10.3 21a1.94 1.94 0 0 0 3.4 0'/></svg>"); }
+  .i-belge { --i: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'><path d='M14 2.5H7a2 2 0 0 0-2 2v15a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7.5z'/><path d='M14 2.5v5h5M9 13h6M9 17h6'/></svg>"); }
+  .i-para { --i: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'><circle cx='12' cy='12' r='9'/><path d='M15 9.5c-.5-1-1.6-1.5-3-1.5-1.7 0-3 .8-3 2s1.3 1.7 3 2 3 .8 3 2-1.3 2-3 2c-1.4 0-2.5-.5-3-1.5M12 6v2M12 16v2'/></svg>"); }
+  .i-saat { --i: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'><circle cx='12' cy='12' r='9'/><path d='M12 7v5l3 2'/></svg>"); }
+  .i-yorum { --i: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'><path d='M4.5 4h15A1.5 1.5 0 0 1 21 5.5v10a1.5 1.5 0 0 1-1.5 1.5H10l-5.5 4v-4A1.5 1.5 0 0 1 3 15.5v-10A1.5 1.5 0 0 1 4.5 4z'/><path d='m10 8.5-2 2 2 2M14 8.5l2 2-2 2'/></svg>"); }
 
   /* ---- alt bilgi ---- */
   .alt-bilgi { display: flex; justify-content: space-between; align-items: flex-end;
-               border-top: 1.5px solid var(--line); padding: 30px 0 52px; }
-  .ad { font-size: 30px; font-weight: 700; }
-  .unvan { font-size: 22px; color: var(--muted); margin-top: 6px; }
-  .kaynak { font-size: 20px; color: var(--muted); text-align: right; line-height: 1.5; }
+               border-top: 1.5px solid var(--panel-line); padding: 18px 0 32px; }
+  .ad { font-size: 24px; font-weight: 700; color: var(--ink); }
+  .unvan { font-size: 17px; color: var(--muted); margin-top: 4px; }
+  .kaynak { font-size: 16px; color: var(--muted); text-align: right; line-height: 1.5; }
 </style>
 </head>
 <body>
-  <div class="ust"><span class="seri">AI News</span><span>Sep 28, 2026</span></div>
-  <div class="etiket">x47.c botnet · AI API draining</div>
-  <h1>Your stolen LLM key now <span class="hl">runs up the bill.</span></h1>
-  <div class="alt">Requests go straight to the provider, so your logs stay flat.</div>
+  <div class="ust"><span><b>AI News</b> · x47.c · WraithTools</span><span>Sep 28, 2026</span></div>
+  <div class="baslik">
+    <div class="baslik-ikon"><i class="ik i-para"></i></div>
+    <div>
+      <h1>x47.c drains AI keys <span class="hl">straight to the invoice</span></h1>
+      <div class="alt">Billable requests skip your app and land on the provider&#x27;s bill.</div>
+    </div>
+  </div>
 
-  <div class="gorsel">
-<div class="not ust">your app never sees<br>these requests</div>
-<div class="pencere kucuk">
-  <div class="cubugu"><b>ai_api_drain</b><span>pseudo-code</span></div>
-  <pre><span class="y"># operator supplies: model name + stolen API key</span>
-<span class="isaret">POST https://api.&lt;provider&gt;/v1/chat/completions</span>
-  Authorization: Bearer &lt;victim key&gt;
-<span class="y"># no gateway, no app log, the bill still lands</span></pre>
+  <div class="pano">
+<div class="sira uc">
+  <div class="panel">
+    <h3><i class="ik i-uyari k"></i>What is it?</h3>
+    <p>Qrator Labs documented x47.c, a Windows botnet sold by WraithTools. Its panel lists 18 DDoS methods, one of them <span class="k">draining a victim's AI API credit</span> with stolen keys.</p>
+  </div>
+  <div class="panel">
+    <ul class="kunye">
+      <li><i class="ik i-bocek k"></i><b>Malware</b>x47.c (Windows)</li>
+      <li><i class="ik i-para m"></i><b>Sold by</b>WraithTools · $200 to $950</li>
+      <li><i class="ik i-anahtar k"></i><b>Drains</b>OpenAI · xAI keys</li>
+      <li><i class="ik i-veritabani m"></i><b>Also steals</b>cookies, wallets, tokens</li>
+    </ul>
+  </div>
+  <div class="panel">
+    <h3><i class="ik i-disli m"></i>How it works</h3>
+    <ol class="adimlar">
+      <li>Stealer grabs AI-site tokens.</li>
+      <li>Operator feeds a key and model.</li>
+      <li>Bots send billable requests direct.</li>
+      <li>Provider bills you, logs stay flat.</li>
+    </ol>
+  </div>
 </div>
-<div class="pencere">
-  <div class="cubugu"><b>~/check</b><span>LLM keys + spend</span></div>
-  <pre><span class="y"># where do live keys sit?</span>
+<div class="panel akis">
+  <div class="dugum"><i class="ik i-bocek k"></i><b>x47.c bots</b><span>stolen key + model</span></div>
+  <div class="ok">billable request</div>
+  <div class="dugum mekanizma"><b>Chat API</b><code>/v1/chat/completions</code><span>your app skipped</span></div>
+  <div class="ok">metered</div>
+  <div class="dugum"><i class="ik i-bulut m"></i><b>Provider</b><span>OpenAI / xAI</span></div>
+  <div class="ok">the bill</div>
+  <div class="dugum"><i class="ik i-para k"></i><b>You</b><span>pay for the traffic</span></div>
+</div>
+<div class="sira iki">
+  <div class="panel">
+    <h3><i class="ik i-kod m"></i>Where the cost lands <em>(representative)</em></h3>
+    <p class="aciklama">Same hour, two counters that should match.</p>
+    <pre><span class="y"># your app's own logged calls</span>
+app_calls_0900 = <span class="g">1,240</span>
+<span class="y"># provider usage, same hour</span>
+provider_calls = <span class="k">9,880</span></pre>
+  </div>
+  <div class="panel">
+    <h3><i class="ik i-terminal m"></i>Check it today</h3>
+    <pre><span class="y"># where do live keys sit?</span>
 <span class="m">$</span> grep -rn "OPENAI_API_KEY" .env* .github/
-<span class="y"># provider usage vs your own call count</span>
-<span class="m">$</span> grep -c "chat/completions" app.log</pre>
+<span class="y"># then diff provider usage vs app log</span></pre>
+    <div class="uyari-kutu"><i class="ik i-uyari"></i>Requests skip your gateway, so rate limits never see them.</div>
+  </div>
 </div>
+<div class="panel">
+  <h3 class="g"><i class="ik i-kalkan"></i>How to defend</h3>
+  <ul class="kontrol">
+    <li>Put a hard spend cap on every key.</li>
+    <li>Alert on provider usage vs app logs.</li>
+    <li>Rotate keys out of .env and CI vars.</li>
+    <li>Scope each key to one model.</li>
+  </ul>
+</div>
+<div class="slogan">Your logs stay flat while <b>the bill climbs.</b></div>
   </div>
 
   <div class="alt-bilgi">
