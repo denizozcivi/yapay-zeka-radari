@@ -34,7 +34,8 @@ def _temizle(mesaj: str, ortam) -> str:
     return mesaj
 
 
-def yayinla(klasor: Path, ortam, gorsel_taban_url: str, li=linkedin.yayinla, ig=instagram.yayinla, bugun=None) -> dict:
+def yayinla(klasor: Path, ortam, gorsel_taban_url: str, li=linkedin.yayinla, ig=instagram.yayinla,
+            ig_link=instagram.kalici_link, bugun=None) -> dict:
     meta_yolu = klasor / "meta.json"
     meta = json.loads(meta_yolu.read_text(encoding="utf-8"))
     if meta.get("durum") not in ("taslak", "kismi"):
@@ -64,6 +65,13 @@ def yayinla(klasor: Path, ortam, gorsel_taban_url: str, li=linkedin.yayinla, ig=
         except Exception as e:
             hatalar.append(_temizle(f"Instagram: {e}", ortam))
 
+    # Post zaten yayında; link alınamazsa yalnızca uyarı, yoksa tekrar denemede post ikinci kez atılır.
+    if meta.get("instagram_post") and not meta.get("instagram_link"):
+        try:
+            meta["instagram_link"] = ig_link(meta["instagram_post"], ortam["IG_TOKEN"])
+        except Exception as e:
+            uyarilar.append(_temizle(f"Instagram linki alınamadı: {e}", ortam))
+
     meta["durum"] = "yayinlandi" if meta.get("linkedin_post") and meta.get("instagram_post") else "kismi"
     meta_yolu.write_text(json.dumps(meta, ensure_ascii=False, indent=2), encoding="utf-8")
     if meta["durum"] == "yayinlandi":
@@ -71,7 +79,8 @@ def yayinla(klasor: Path, ortam, gorsel_taban_url: str, li=linkedin.yayinla, ig=
             f.write(f"- {meta['tarih']} · {meta['konu']}\n")
 
     return {"durum": meta["durum"], "linkedin": meta.get("linkedin_post"),
-            "instagram": meta.get("instagram_post"), "hatalar": hatalar, "uyarilar": uyarilar}
+            "instagram": meta.get("instagram_post"), "instagram_link": meta.get("instagram_link"),
+            "hatalar": hatalar, "uyarilar": uyarilar}
 
 
 if __name__ == "__main__":

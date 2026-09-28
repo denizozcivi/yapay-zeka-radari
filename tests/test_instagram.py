@@ -60,6 +60,20 @@ def test_yayinla_hatasinda_token_gorunmez():
     assert "GIZLI-IG-TOKEN" not in str(hata.value)
 
 
+def test_kalici_link():
+    oturum = SahteOturum([Yanit(veri={"id": "M1", "permalink": "https://www.instagram.com/p/ABC/"})])
+    assert instagram.kalici_link("M1", "tok", oturum=oturum) == "https://www.instagram.com/p/ABC/"
+    cagri = oturum.cagrilar[0]
+    assert cagri[0] == "GET" and cagri[1].endswith("/M1")
+    assert cagri[2]["params"]["fields"] == "permalink"
+
+
+def test_kalici_link_hatasinda_token_gorunmez():
+    with pytest.raises(RuntimeError) as hata:
+        instagram.kalici_link("M1", "GIZLI-IG-TOKEN", oturum=PatlayanOturum())
+    assert "GIZLI-IG-TOKEN" not in str(hata.value)
+
+
 def test_token_yenile():
     oturum = SahteOturum([Yanit(veri={"access_token": "YENI", "expires_in": 5184000})])
     assert instagram.token_yenile("ESKI", oturum=oturum)["access_token"] == "YENI"

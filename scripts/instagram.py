@@ -61,6 +61,13 @@ def yayinla(metin: str, gorsel_url: str, token: str, kullanici_id: str, oturum=N
         return r.json()["id"]
 
 
+def kalici_link(medya_id: str, token: str, oturum=None) -> str:
+    with _token_gizli(token):
+        r = (oturum or requests).get(f"{API}/{medya_id}", params={"fields": "permalink", "access_token": token}, timeout=30)
+        r.raise_for_status()
+        return r.json()["permalink"]
+
+
 def token_yenile(token: str, oturum=None) -> dict:
     with _token_gizli(token):
         r = (oturum or requests).get(

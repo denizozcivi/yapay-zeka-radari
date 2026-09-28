@@ -44,11 +44,47 @@ def ig_hatali(*a, **k):
     raise RuntimeError("bozuk token IG-GIZLI")
 
 
+def link_basarili(medya_id, token):
+    assert (medya_id, token) == ("M1", "IG-GIZLI")
+    return "https://www.instagram.com/p/ABC/"
+
+
+def link_hatali(*a, **k):
+    raise RuntimeError("zaman aşımı IG-GIZLI")
+
+
 def test_iki_platform_basarili(depo):
-    sonuc = publish.yayinla(depo, ORTAM, "https://raw.test/", li=li_basarili, ig=ig_basarili, bugun=BUGUN)
+    sonuc = publish.yayinla(depo, ORTAM, "https://raw.test/", li=li_basarili, ig=ig_basarili, ig_link=link_basarili,
+                            bugun=BUGUN)
     assert sonuc["durum"] == "yayinlandi"
     assert meta_oku(depo)["durum"] == "yayinlandi"
     assert "- 2026-09-22 · Gemini" in (depo.parent.parent / "yayinlananlar.md").read_text(encoding="utf-8")
+
+
+def test_instagram_linki_sonuca_ve_metaya_yazilir(depo):
+    sonuc = publish.yayinla(depo, ORTAM, "https://raw.test", li=li_basarili, ig=ig_basarili, ig_link=link_basarili,
+                            bugun=BUGUN)
+    assert sonuc["instagram_link"] == "https://www.instagram.com/p/ABC/"
+    assert meta_oku(depo)["instagram_link"] == "https://www.instagram.com/p/ABC/"
+
+
+def test_link_alinamazsa_yayin_basarili_kalir_ve_uyari_duser(depo):
+    sonuc = publish.yayinla(depo, ORTAM, "https://raw.test", li=li_basarili, ig=ig_basarili, ig_link=link_hatali,
+                            bugun=BUGUN)
+    assert sonuc["durum"] == "yayinlandi"
+    assert sonuc["instagram"] == "M1"
+    assert sonuc["instagram_link"] is None
+    assert "Instagram linki alınamadı: zaman aşımı ***" in sonuc["uyarilar"]
+    assert sonuc["hatalar"] == []
+
+
+def test_instagram_hatasinda_link_istenmez(depo):
+    def link_cagrilmamali(*a, **k):
+        raise AssertionError("yayın olmadan link istendi")
+
+    sonuc = publish.yayinla(depo, ORTAM, "https://raw.test", li=li_basarili, ig=ig_hatali, ig_link=link_cagrilmamali,
+                            bugun=BUGUN)
+    assert sonuc["durum"] == "kismi"
 
 
 def test_bir_platform_hatasi_digerini_etkilemez_ve_token_gizlenir(depo):
@@ -65,12 +101,14 @@ def test_kismi_tekrar_sadece_eksigi_dener(depo):
     def li_cagrilmamali(*a, **k):
         raise AssertionError("LinkedIn ikinci kez çağrıldı")
 
-    sonuc = publish.yayinla(depo, ORTAM, "https://raw.test", li=li_cagrilmamali, ig=ig_basarili, bugun=BUGUN)
+    sonuc = publish.yayinla(depo, ORTAM, "https://raw.test", li=li_cagrilmamali, ig=ig_basarili,
+                            ig_link=link_basarili, bugun=BUGUN)
     assert sonuc["durum"] == "yayinlandi"
 
 
 def test_yayinlanmis_taslak_atlanir(depo):
-    publish.yayinla(depo, ORTAM, "https://raw.test", li=li_basarili, ig=ig_basarili, bugun=BUGUN)
+    publish.yayinla(depo, ORTAM, "https://raw.test", li=li_basarili, ig=ig_basarili, ig_link=link_basarili,
+                    bugun=BUGUN)
     sonuc = publish.yayinla(depo, ORTAM, "https://raw.test", li=None, ig=None, bugun=BUGUN)
     assert sonuc["durum"] == "atlandi"
 
