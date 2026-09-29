@@ -1,0 +1,12 @@
+{
+  "tarih": "2026-09-29",
+  "konu": "MCP Python SDK'nin OAuth istemcisi (GHSA-qx49-fqc8-xw99), baglandigi MCP sunucusunun gosterdigi yetkilendirme sunucusunun issuer alanini dogrulamadigi icin client secret, authorization code ve PKCE verifier'i saldirganin token endpoint'ine gonderiyordu; 1.30.0 ve 2.2.0'da duzeltildi",
+  "kaynak_adi": "GitHub Security Advisory",
+  "kaynak_url": "https://github.com/modelcontextprotocol/python-sdk/security/advisories/GHSA-qx49-fqc8-xw99",
+  "alt_metin": "Infographic on GHSA-qx49-fqc8-xw99 in the MCP Python SDK: four facts, a flow from an attacker-run MCP server through an unchecked issuer to a token at the real authorization server, example authorization server metadata, a version check and four defenses.",
+  "durum": "taslak",
+  "gmail_thread_id": null,
+  "gmail_taslak_mesaj_id": null,
+  "linkedin_post": null,
+  "instagram_post": null
+}
