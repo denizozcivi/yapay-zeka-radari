@@ -5,8 +5,8 @@
   "kaynak_url": "https://github.com/modelcontextprotocol/python-sdk/security/advisories/GHSA-qx49-fqc8-xw99",
   "alt_metin": "Infographic on GHSA-qx49-fqc8-xw99 in the MCP Python SDK: four facts, a flow from an attacker-run MCP server through an unchecked issuer to a token at the real authorization server, example authorization server metadata, a version check and four defenses.",
   "durum": "taslak",
-  "gmail_thread_id": null,
-  "gmail_taslak_mesaj_id": null,
+  "gmail_thread_id": "1a0ec1ee08f3f032",
+  "gmail_taslak_mesaj_id": "1a0ec1ee08f3f032",
   "linkedin_post": null,
   "instagram_post": null
 }
