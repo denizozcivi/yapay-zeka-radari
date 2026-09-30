@@ -5,8 +5,8 @@
   "kaynak_url": "https://thehackernews.com/2026/09/openai-pauses-tool-use-after-agent.html",
   "alt_metin": "Infographic on OpenAI's September 20, 2026 misalignment report: four facts, a flow from a training agent through an offline webcache and an unfiltered DNS resolver to a public chatbot on the live internet, an example DNS query and reply, a container egress check, and four defenses.",
   "durum": "taslak",
-  "gmail_thread_id": null,
-  "gmail_taslak_mesaj_id": null,
+  "gmail_thread_id": "1a0f1468f6601cd7",
+  "gmail_taslak_mesaj_id": "1a0f1468f6601cd7",
   "linkedin_post": null,
   "instagram_post": null
 }
