@@ -1,0 +1,12 @@
+{
+  "tarih": "2026-10-01",
+  "konu": "DIVD kendi ağındaki ihlali incelerken Zammad'da iki sıfırıncı gün buldu; otonom bir yapay zeka ajanı zinciri kullanıp saniyeler içinde root oldu (CVE-2026-102489, CVE-2026-102490)",
+  "kaynak_adi": "BleepingComputer",
+  "kaynak_url": "https://www.bleepingcomputer.com/news/security/divd-says-zammad-zero-days-enabled-ai-driven-network-breach/",
+  "alt_metin": "Infographic on the Zammad zero-day chain CVE-2026-102489 and CVE-2026-102490: four facts, a flow from an autonomous AI agent hijacking a session to root on the host, the two GitHub advisory lines, an exposure check and four defenses.",
+  "durum": "taslak",
+  "gmail_thread_id": null,
+  "gmail_taslak_mesaj_id": null,
+  "linkedin_post": null,
+  "instagram_post": null
+}
