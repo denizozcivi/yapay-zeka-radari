@@ -1,0 +1,12 @@
+{
+  "tarih": "2026-10-02",
+  "konu": "OpenAI 1 Ekim'de temmuzda yürütülen koordineli bir adversarial distillation kampanyasını açıkladı: operatörler bir konuşmadan aldıkları şifreli akıl yürütme bloğunu başka bir konuşmadaki daha zayıf modele verip düz metin olarak geri okuttu; 24-25 Temmuz'da 16.000 istek, 15.000'den fazla hesapta aynı kalıp, 28 Temmuz'da engellendi, çekirdek kümesi Moonshot AI ile ilişkili kişilere atfedildi",
+  "kaynak_adi": "The Hacker News",
+  "kaynak_url": "https://thehackernews.com/2026/10/openai-disrupts-reasoning-extraction.html",
+  "alt_metin": "Infographic on OpenAI's coordinated model-distillation disruption: four facts, a flow from an operator holding another user's encrypted reasoning block through a weaker sibling model to plaintext chain of thought, an example replay request, a log check and four defenses.",
+  "durum": "taslak",
+  "gmail_thread_id": null,
+  "gmail_taslak_mesaj_id": null,
+  "linkedin_post": null,
+  "instagram_post": null
+}
