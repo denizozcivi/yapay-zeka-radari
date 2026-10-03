@@ -1,0 +1,12 @@
+{
+  "tarih": "2026-10-03",
+  "konu": "GitLab self-hosted AI Gateway'de CVSS 9.9'luk sandbox kaçışı (CVE-2026-90970): Duo Agent Platform erişimi olan kimliklenmiş bir kullanıcı, hazirladigi flow yapılandırmasıyla prompt şablon motorundan çıkıp gateway üzerinde komut çalıştırabiliyordu; 19.2.4, 19.3.2 ve 19.4.1 ile düzeltildi",
+  "kaynak_adi": "The Hacker News",
+  "kaynak_url": "https://thehackernews.com/2026/10/gitlab-patches-critical-self-hosted-ai.html",
+  "alt_metin": "Infographic on CVE-2026-90970: four facts about the GitLab AI Gateway sandbox escape, a flow from an authenticated Duo user through a crafted flow configuration and the prompt template engine to command execution on the gateway, a representative flow config, a version check and four defenses.",
+  "durum": "taslak",
+  "gmail_thread_id": null,
+  "gmail_taslak_mesaj_id": null,
+  "linkedin_post": null,
+  "instagram_post": null
+}
