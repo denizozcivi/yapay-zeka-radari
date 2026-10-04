@@ -1,0 +1,12 @@
+{
+  "tarih": "2026-10-04",
+  "konu": "Gemini Desktop'un macOS uygulamasinda gizli bir \"Additional sandbox options\" ayari bulundu: acildiginda Gemini, bagli olmayan klasorler dahil her yerdeki dosyayi okuyup silebiliyor ve Mail, Safari, Messages uzerinden islem yapabiliyor, her adimda izin istemeden; ayar henuz yayinda degil ve Google dogrulamadi",
+  "kaynak_adi": "BleepingComputer",
+  "kaynak_url": "https://www.bleepingcomputer.com/news/google/google-gemini-could-soon-get-full-access-to-your-macs-files-apps-and-the-web/",
+  "alt_metin": "Infographic on the hidden \"Additional sandbox options\" setting in Gemini Desktop: four facts about the macOS change, a flow from a user enabling the setting to standing consent and actions sent through Mail and Safari, the quoted in-app permission text, a TCC check command and four defenses.",
+  "durum": "taslak",
+  "gmail_thread_id": null,
+  "gmail_taslak_mesaj_id": null,
+  "linkedin_post": null,
+  "instagram_post": null
+}
